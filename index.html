@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0 user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Order Your Coffee</title>
+    <link rel="icon" href="assets/img/starbucks-icon.png" />
+
+    <!-- <link rel="stylesheet" href="assets/styles/font-awesome.min.css"/> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/styles/app.css" />
+
+    <script src="assets/scripts/order.js" defer></script>
+    <script src="assets/scripts/subMenu.js" defer></script>
+    <script src="assets/scripts/chart.js" defer></script>
+    <script src="assets/scripts/app.js" defer></script>
+    <script src="assets/scripts/submitOrder.js" defer></script>
+  </head>
+
+  <body>
+    <template id="sub-item">
+      <div class="sub-menu-item">
+        <img src="" alt="" />
+        <p></p>
+        <select name="size" class="cup-size">
+          <option value="short">Short</option>
+          <option value="tall">Tall</option>
+          <option value="grande">Grande</option>
+          <option value="venti">Venti</option>
+        </select>
+        <input value="0" disabled />
+        <input type="number" value="1" />
+        <button class="button-add">Add</button>
+      </div>
+    </template>
+    <template id="order-template">
+      <tr>
+        <td class="order-no"></td>
+        <td class="order-img"><img src="" alt="" /></td>
+        <td class="order-name"></td>
+        <td class="order-size"></td>
+        <td class="order-quantity"></td>
+        <td class="order-price"></td>
+        <td class="order-price"></td>
+        <td class="order-cancel">x</td>
+      </tr>
+    </template>
+    <div id="backdrop" class="hidden"></div>
+    <nav>
+      <div id="icon">
+        <img src="assets/img/starbucks-icon.png" alt="starbucks-logo" />
+      </div>
+      <div id="store">
+        <select name="" id="store-opt">
+          <option value="default" selected>Select Store</option>
+          <option value="store-levent">Levent</option>
+          <option value="store-sisli">Şişli</option>
+          <option value="store-kadikoy">Kadıköy</option>
+          <option value="store-maslak">Maslak</option>
+        </select>
+      </div>
+      <div id="chart-icon">
+        <i class="fa fa-shopping-cart"></i>
+        <span class="invisible">0</span>
+      </div>
+    </nav>
+
+    <section id="news">
+      <div id="news-panel">
+        <button id="button-back"><</button>
+        <img class="news-img" src="assets/img/news-1.png" alt="new products" />
+        <img
+          class="news-img hidden"
+          src="assets/img/news-2.png"
+          alt="new products"
+        />
+        <img
+          class="news-img hidden"
+          src="assets/img/news-3.png"
+          alt="new products"
+        />
+        <button id="button-next">></button>
+      </div>
+      <div id="bars">
+        <span id="1" class="bar-item"></span>
+        <span id="2" class="bar-item"></span>
+        <span id="3" class="bar-item"></span>
+      </div>
+    </section>
+
+    <section id="menu">
+      <h2>Menu</h2>
+      <div id="drink">
+        <img src="assets/img/menu/drink.jpg" alt="drink" />
+        <h4>Drink</h4>
+      </div>
+      <div id="food">
+        <img src="assets/img/menu/food.JPG" alt="food" />
+        <h4>Food</h4>
+      </div>
+      <div id="beans">
+        <img src="assets/img/menu/at-home-coffee.JPG" alt="At home coffee" />
+        <h4>Whole Beans</h4>
+      </div>
+      <div id="merchandise">
+        <img src="assets/img/menu/merchandise.jpg" alt="merchandise" />
+        <h4>Merchandise</h4>
+      </div>
+    </section>
+    <div id="sub-menu" class="hidden">
+      <div id="menu-items">
+        <!--template will be added-->
+      </div>
+      <div id="sub-menu-result">
+        <div id="sub-menu-result-text">
+          <p>Products to be sent to the chart:</p>
+          <ol id="order-list"></ol>
+        </div>
+        <div id="sub-total-area">
+          <label for="">Sub Total:</label>
+          <input value="0.00 $" disabled />
+        </div>
+        <button id="button-cancel">Cancel</button>
+        <button id="button-complete">Send to Chart</button>
+      </div>
+    </div>
+    <div id="chart" class="hidden">
+      <section id="order-section">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Order</th>
+              <th>Name</th>
+              <th>Size</th>
+              <th>Unit</th>
+              <th>Price</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="chart-table">
+            <!--template will be added-->
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="6">Sub Total:</td>
+              <td id="chart-sub-total">0.00 $</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+      <section id="operation-section">
+        <button id="button-clear">Clear Chart</button>
+        <button id="button-submit">Submit Order</button>
+      </section>
+    </div>
+
+    <div id="message-box" class="hidden">
+      <div id="mb-store">
+        <p>Store:</p>
+      </div>
+      <div id="mb-order-detail">
+        <section id="mb-order-section">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Order</th>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Unit</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="mb-chart-table">
+              <!--template will be added-->
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="6">Total:</td>
+                <td id="mb-chart-sub-total">0.00 $</td>
+              </tr>
+            </tfoot>
+          </table>
+        </section>
+      </div>
+      <section id="mb-operation-section">
+        <button id="mb-button-clear">Cancel</button>
+        <button id="mb-button-submit">Send Order</button>
+      </section>
+    </div>
+  </body>
+</html>
